@@ -1,0 +1,395 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jst.reward.dao.IncentiveRecordMapper">
+  <resultMap id="BaseResultMap" type="com.jst.prodution.reward.serviceBean.IncentiveRecord">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="code" jdbcType="VARCHAR" property="code" />
+    <result column="uid" jdbcType="VARCHAR" property="uid" />
+    <result column="channel" jdbcType="VARCHAR" property="channel" />
+    <result column="operate_time" jdbcType="DATE" property="operateTime" />
+    <result column="sign_in_days" jdbcType="INTEGER" property="signInDays" />
+    <result column="Incentive_model" jdbcType="VARCHAR" property="incentiveModel" />
+    <result column="Incentive_name" jdbcType="VARCHAR" property="incentiveName" />
+    <result column="score" jdbcType="INTEGER" property="score" />
+    <result column="score_type" jdbcType="INTEGER" property="scoreType" />
+    <result column="Send_time" jdbcType="TIMESTAMP" property="sendTime" />
+    <result column="state" jdbcType="INTEGER" property="state" />
+    <result column="enable" jdbcType="INTEGER" property="enable" />
+    <result column="create_Time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="create_By" jdbcType="VARCHAR" property="createBy" />
+    <result column="last_Update_Time" jdbcType="TIMESTAMP" property="lastUpdateTime" />
+    <result column="last_Update_By" jdbcType="VARCHAR" property="lastUpdateBy" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, code, uid, channel, operate_time, sign_in_days, Incentive_model, Incentive_name, 
+    score, score_type, Send_time, state, enable, create_Time, create_By, last_Update_Time, 
+    last_Update_By
+  </sql>
+  <select id="selectByExample" parameterType="com.jst.reward.bean.IncentiveRecordExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_incentive_record
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_incentive_record
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from t_incentive_record
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.jst.reward.bean.IncentiveRecordExample">
+    delete from t_incentive_record
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.jst.prodution.reward.serviceBean.IncentiveRecord" useGeneratedKeys="true">
+    insert into t_incentive_record (code, uid, channel, 
+      operate_time, sign_in_days, Incentive_model, 
+      Incentive_name, score, score_type, 
+      Send_time, state, enable, 
+      create_Time, create_By, last_Update_Time, 
+      last_Update_By)
+    values (#{code,jdbcType=VARCHAR}, #{uid,jdbcType=VARCHAR}, #{channel,jdbcType=VARCHAR}, 
+      #{operateTime,jdbcType=DATE}, #{signInDays,jdbcType=INTEGER}, #{incentiveModel,jdbcType=VARCHAR}, 
+      #{incentiveName,jdbcType=VARCHAR}, #{score,jdbcType=INTEGER}, #{scoreType,jdbcType=INTEGER}, 
+      #{sendTime,jdbcType=TIMESTAMP}, #{state,jdbcType=INTEGER}, #{enable,jdbcType=INTEGER}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{createBy,jdbcType=VARCHAR}, #{lastUpdateTime,jdbcType=TIMESTAMP}, 
+      #{lastUpdateBy,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.jst.prodution.reward.serviceBean.IncentiveRecord" useGeneratedKeys="true">
+    insert into t_incentive_record
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="code != null">
+        code,
+      </if>
+      <if test="uid != null">
+        uid,
+      </if>
+      <if test="channel != null">
+        channel,
+      </if>
+      <if test="operateTime != null">
+        operate_time,
+      </if>
+      <if test="signInDays != null">
+        sign_in_days,
+      </if>
+      <if test="incentiveModel != null">
+        Incentive_model,
+      </if>
+      <if test="incentiveName != null">
+        Incentive_name,
+      </if>
+      <if test="score != null">
+        score,
+      </if>
+      <if test="scoreType != null">
+        score_type,
+      </if>
+      <if test="sendTime != null">
+        Send_time,
+      </if>
+      <if test="state != null">
+        state,
+      </if>
+      <if test="enable != null">
+        enable,
+      </if>
+      <if test="createTime != null">
+        create_Time,
+      </if>
+      <if test="createBy != null">
+        create_By,
+      </if>
+      <if test="lastUpdateTime != null">
+        last_Update_Time,
+      </if>
+      <if test="lastUpdateBy != null">
+        last_Update_By,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="code != null">
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="uid != null">
+        #{uid,jdbcType=VARCHAR},
+      </if>
+      <if test="channel != null">
+        #{channel,jdbcType=VARCHAR},
+      </if>
+      <if test="operateTime != null">
+        #{operateTime,jdbcType=DATE},
+      </if>
+      <if test="signInDays != null">
+        #{signInDays,jdbcType=INTEGER},
+      </if>
+      <if test="incentiveModel != null">
+        #{incentiveModel,jdbcType=VARCHAR},
+      </if>
+      <if test="incentiveName != null">
+        #{incentiveName,jdbcType=VARCHAR},
+      </if>
+      <if test="score != null">
+        #{score,jdbcType=INTEGER},
+      </if>
+      <if test="scoreType != null">
+        #{scoreType,jdbcType=INTEGER},
+      </if>
+      <if test="sendTime != null">
+        #{sendTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="state != null">
+        #{state,jdbcType=INTEGER},
+      </if>
+      <if test="enable != null">
+        #{enable,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createBy != null">
+        #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="lastUpdateTime != null">
+        #{lastUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastUpdateBy != null">
+        #{lastUpdateBy,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.jst.reward.bean.IncentiveRecordExample" resultType="java.lang.Long">
+    select count(*) from t_incentive_record
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update t_incentive_record
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.code != null">
+        code = #{record.code,jdbcType=VARCHAR},
+      </if>
+      <if test="record.uid != null">
+        uid = #{record.uid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.channel != null">
+        channel = #{record.channel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.operateTime != null">
+        operate_time = #{record.operateTime,jdbcType=DATE},
+      </if>
+      <if test="record.signInDays != null">
+        sign_in_days = #{record.signInDays,jdbcType=INTEGER},
+      </if>
+      <if test="record.incentiveModel != null">
+        Incentive_model = #{record.incentiveModel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.incentiveName != null">
+        Incentive_name = #{record.incentiveName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.score != null">
+        score = #{record.score,jdbcType=INTEGER},
+      </if>
+      <if test="record.scoreType != null">
+        score_type = #{record.scoreType,jdbcType=INTEGER},
+      </if>
+      <if test="record.sendTime != null">
+        Send_time = #{record.sendTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.state != null">
+        state = #{record.state,jdbcType=INTEGER},
+      </if>
+      <if test="record.enable != null">
+        enable = #{record.enable,jdbcType=INTEGER},
+      </if>
+      <if test="record.createTime != null">
+        create_Time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.createBy != null">
+        create_By = #{record.createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lastUpdateTime != null">
+        last_Update_Time = #{record.lastUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.lastUpdateBy != null">
+        last_Update_By = #{record.lastUpdateBy,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update t_incentive_record
+    set id = #{record.id,jdbcType=VARCHAR},
+      code = #{record.code,jdbcType=VARCHAR},
+      uid = #{record.uid,jdbcType=VARCHAR},
+      channel = #{record.channel,jdbcType=VARCHAR},
+      operate_time = #{record.operateTime,jdbcType=DATE},
+      sign_in_days = #{record.signInDays,jdbcType=INTEGER},
+      Incentive_model = #{record.incentiveModel,jdbcType=VARCHAR},
+      Incentive_name = #{record.incentiveName,jdbcType=VARCHAR},
+      score = #{record.score,jdbcType=INTEGER},
+      score_type = #{record.scoreType,jdbcType=INTEGER},
+      Send_time = #{record.sendTime,jdbcType=TIMESTAMP},
+      state = #{record.state,jdbcType=INTEGER},
+      enable = #{record.enable,jdbcType=INTEGER},
+      create_Time = #{record.createTime,jdbcType=TIMESTAMP},
+      create_By = #{record.createBy,jdbcType=VARCHAR},
+      last_Update_Time = #{record.lastUpdateTime,jdbcType=TIMESTAMP},
+      last_Update_By = #{record.lastUpdateBy,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jst.prodution.reward.serviceBean.IncentiveRecord">
+    update t_incentive_record
+    <set>
+      <if test="code != null">
+        code = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="uid != null">
+        uid = #{uid,jdbcType=VARCHAR},
+      </if>
+      <if test="channel != null">
+        channel = #{channel,jdbcType=VARCHAR},
+      </if>
+      <if test="operateTime != null">
+        operate_time = #{operateTime,jdbcType=DATE},
+      </if>
+      <if test="signInDays != null">
+        sign_in_days = #{signInDays,jdbcType=INTEGER},
+      </if>
+      <if test="incentiveModel != null">
+        Incentive_model = #{incentiveModel,jdbcType=VARCHAR},
+      </if>
+      <if test="incentiveName != null">
+        Incentive_name = #{incentiveName,jdbcType=VARCHAR},
+      </if>
+      <if test="score != null">
+        score = #{score,jdbcType=INTEGER},
+      </if>
+      <if test="scoreType != null">
+        score_type = #{scoreType,jdbcType=INTEGER},
+      </if>
+      <if test="sendTime != null">
+        Send_time = #{sendTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="state != null">
+        state = #{state,jdbcType=INTEGER},
+      </if>
+      <if test="enable != null">
+        enable = #{enable,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        create_Time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createBy != null">
+        create_By = #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="lastUpdateTime != null">
+        last_Update_Time = #{lastUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastUpdateBy != null">
+        last_Update_By = #{lastUpdateBy,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jst.prodution.reward.serviceBean.IncentiveRecord">
+    update t_incentive_record
+    set code = #{code,jdbcType=VARCHAR},
+      uid = #{uid,jdbcType=VARCHAR},
+      channel = #{channel,jdbcType=VARCHAR},
+      operate_time = #{operateTime,jdbcType=DATE},
+      sign_in_days = #{signInDays,jdbcType=INTEGER},
+      Incentive_model = #{incentiveModel,jdbcType=VARCHAR},
+      Incentive_name = #{incentiveName,jdbcType=VARCHAR},
+      score = #{score,jdbcType=INTEGER},
+      score_type = #{scoreType,jdbcType=INTEGER},
+      Send_time = #{sendTime,jdbcType=TIMESTAMP},
+      state = #{state,jdbcType=INTEGER},
+      enable = #{enable,jdbcType=INTEGER},
+      create_Time = #{createTime,jdbcType=TIMESTAMP},
+      create_By = #{createBy,jdbcType=VARCHAR},
+      last_Update_Time = #{lastUpdateTime,jdbcType=TIMESTAMP},
+      last_Update_By = #{lastUpdateBy,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

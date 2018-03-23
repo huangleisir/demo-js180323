@@ -1,0 +1,315 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jst.reward.dao.SigninConfigurationMapper">
+  <resultMap id="BaseResultMap" type="com.jst.prodution.reward.serviceBean.SigninConfiguration">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="code" jdbcType="VARCHAR" property="code" />
+    <result column="role_name" jdbcType="VARCHAR" property="roleName" />
+    <result column="Consecutive_days" jdbcType="INTEGER" property="consecutiveDays" />
+    <result column="score" jdbcType="INTEGER" property="score" />
+    <result column="return_detail" jdbcType="VARCHAR" property="returnDetail" />
+    <result column="state" jdbcType="INTEGER" property="state" />
+    <result column="enable" jdbcType="INTEGER" property="enable" />
+    <result column="create_Time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="create_By" jdbcType="VARCHAR" property="createBy" />
+    <result column="last_Update_By" jdbcType="VARCHAR" property="lastUpdateBy" />
+    <result column="last_Update_Time" jdbcType="TIMESTAMP" property="lastUpdateTime" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, code, role_name, Consecutive_days, score, return_detail, state, enable, create_Time, 
+    create_By, last_Update_By, last_Update_Time
+  </sql>
+  <select id="selectByExample" parameterType="com.jst.reward.bean.SigninConfigurationExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_signin_configuration
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_signin_configuration
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from t_signin_configuration
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.jst.reward.bean.SigninConfigurationExample">
+    delete from t_signin_configuration
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.jst.prodution.reward.serviceBean.SigninConfiguration" useGeneratedKeys="true">
+    insert into t_signin_configuration (code, role_name, Consecutive_days, 
+      score, return_detail, state, 
+      enable, create_Time, create_By, 
+      last_Update_By, last_Update_Time)
+    values (#{code,jdbcType=VARCHAR}, #{roleName,jdbcType=VARCHAR}, #{consecutiveDays,jdbcType=INTEGER}, 
+      #{score,jdbcType=INTEGER}, #{returnDetail,jdbcType=VARCHAR}, #{state,jdbcType=INTEGER}, 
+      #{enable,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{createBy,jdbcType=VARCHAR}, 
+      #{lastUpdateBy,jdbcType=VARCHAR}, #{lastUpdateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.jst.prodution.reward.serviceBean.SigninConfiguration" useGeneratedKeys="true">
+    insert into t_signin_configuration
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="code != null">
+        code,
+      </if>
+      <if test="roleName != null">
+        role_name,
+      </if>
+      <if test="consecutiveDays != null">
+        Consecutive_days,
+      </if>
+      <if test="score != null">
+        score,
+      </if>
+      <if test="returnDetail != null">
+        return_detail,
+      </if>
+      <if test="state != null">
+        state,
+      </if>
+      <if test="enable != null">
+        enable,
+      </if>
+      <if test="createTime != null">
+        create_Time,
+      </if>
+      <if test="createBy != null">
+        create_By,
+      </if>
+      <if test="lastUpdateBy != null">
+        last_Update_By,
+      </if>
+      <if test="lastUpdateTime != null">
+        last_Update_Time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="code != null">
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="roleName != null">
+        #{roleName,jdbcType=VARCHAR},
+      </if>
+      <if test="consecutiveDays != null">
+        #{consecutiveDays,jdbcType=INTEGER},
+      </if>
+      <if test="score != null">
+        #{score,jdbcType=INTEGER},
+      </if>
+      <if test="returnDetail != null">
+        #{returnDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null">
+        #{state,jdbcType=INTEGER},
+      </if>
+      <if test="enable != null">
+        #{enable,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createBy != null">
+        #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="lastUpdateBy != null">
+        #{lastUpdateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="lastUpdateTime != null">
+        #{lastUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.jst.reward.bean.SigninConfigurationExample" resultType="java.lang.Long">
+    select count(*) from t_signin_configuration
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update t_signin_configuration
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.code != null">
+        code = #{record.code,jdbcType=VARCHAR},
+      </if>
+      <if test="record.roleName != null">
+        role_name = #{record.roleName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.consecutiveDays != null">
+        Consecutive_days = #{record.consecutiveDays,jdbcType=INTEGER},
+      </if>
+      <if test="record.score != null">
+        score = #{record.score,jdbcType=INTEGER},
+      </if>
+      <if test="record.returnDetail != null">
+        return_detail = #{record.returnDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="record.state != null">
+        state = #{record.state,jdbcType=INTEGER},
+      </if>
+      <if test="record.enable != null">
+        enable = #{record.enable,jdbcType=INTEGER},
+      </if>
+      <if test="record.createTime != null">
+        create_Time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.createBy != null">
+        create_By = #{record.createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lastUpdateBy != null">
+        last_Update_By = #{record.lastUpdateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lastUpdateTime != null">
+        last_Update_Time = #{record.lastUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update t_signin_configuration
+    set id = #{record.id,jdbcType=VARCHAR},
+      code = #{record.code,jdbcType=VARCHAR},
+      role_name = #{record.roleName,jdbcType=VARCHAR},
+      Consecutive_days = #{record.consecutiveDays,jdbcType=INTEGER},
+      score = #{record.score,jdbcType=INTEGER},
+      return_detail = #{record.returnDetail,jdbcType=VARCHAR},
+      state = #{record.state,jdbcType=INTEGER},
+      enable = #{record.enable,jdbcType=INTEGER},
+      create_Time = #{record.createTime,jdbcType=TIMESTAMP},
+      create_By = #{record.createBy,jdbcType=VARCHAR},
+      last_Update_By = #{record.lastUpdateBy,jdbcType=VARCHAR},
+      last_Update_Time = #{record.lastUpdateTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jst.prodution.reward.serviceBean.SigninConfiguration">
+    update t_signin_configuration
+    <set>
+      <if test="code != null">
+        code = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="roleName != null">
+        role_name = #{roleName,jdbcType=VARCHAR},
+      </if>
+      <if test="consecutiveDays != null">
+        Consecutive_days = #{consecutiveDays,jdbcType=INTEGER},
+      </if>
+      <if test="score != null">
+        score = #{score,jdbcType=INTEGER},
+      </if>
+      <if test="returnDetail != null">
+        return_detail = #{returnDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null">
+        state = #{state,jdbcType=INTEGER},
+      </if>
+      <if test="enable != null">
+        enable = #{enable,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        create_Time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createBy != null">
+        create_By = #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="lastUpdateBy != null">
+        last_Update_By = #{lastUpdateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="lastUpdateTime != null">
+        last_Update_Time = #{lastUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jst.prodution.reward.serviceBean.SigninConfiguration">
+    update t_signin_configuration
+    set code = #{code,jdbcType=VARCHAR},
+      role_name = #{roleName,jdbcType=VARCHAR},
+      Consecutive_days = #{consecutiveDays,jdbcType=INTEGER},
+      score = #{score,jdbcType=INTEGER},
+      return_detail = #{returnDetail,jdbcType=VARCHAR},
+      state = #{state,jdbcType=INTEGER},
+      enable = #{enable,jdbcType=INTEGER},
+      create_Time = #{createTime,jdbcType=TIMESTAMP},
+      create_By = #{createBy,jdbcType=VARCHAR},
+      last_Update_By = #{lastUpdateBy,jdbcType=VARCHAR},
+      last_Update_Time = #{lastUpdateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

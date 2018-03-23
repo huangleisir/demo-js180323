@@ -1,0 +1,366 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jst.reward.dao.BasicConfigurationMapper">
+  <resultMap id="BaseResultMap" type="com.jst.prodution.reward.serviceBean.BasicConfiguration">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="code" jdbcType="VARCHAR" property="code" />
+    <result column="Incentive_name" jdbcType="VARCHAR" property="incentiveName" />
+    <result column="channel" jdbcType="VARCHAR" property="channel" />
+    <result column="Incentive_model" jdbcType="VARCHAR" property="incentiveModel" />
+    <result column="Rule_configuration_table" jdbcType="VARCHAR" property="ruleConfigurationTable" />
+    <result column="Start_date" jdbcType="DATE" property="startDate" />
+    <result column="Expiration_date" jdbcType="DATE" property="expirationDate" />
+    <result column="Day_limit" jdbcType="INTEGER" property="dayLimit" />
+    <result column="enable" jdbcType="INTEGER" property="enable" />
+    <result column="state" jdbcType="INTEGER" property="state" />
+    <result column="create_Time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="create_By" jdbcType="VARCHAR" property="createBy" />
+    <result column="last_Update_Time" jdbcType="TIMESTAMP" property="lastUpdateTime" />
+    <result column="last_Update_By" jdbcType="VARCHAR" property="lastUpdateBy" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    ID, code, Incentive_name, channel, Incentive_model, Rule_configuration_table, Start_date, 
+    Expiration_date, Day_limit, enable, state, create_Time, create_By, last_Update_Time, 
+    last_Update_By
+  </sql>
+  <select id="selectByExample" parameterType="com.jst.reward.bean.BasicConfigurationExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_basic_configuration
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_basic_configuration
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from t_basic_configuration
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.jst.reward.bean.BasicConfigurationExample">
+    delete from t_basic_configuration
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" keyColumn="ID" keyProperty="id" parameterType="com.jst.prodution.reward.serviceBean.BasicConfiguration" useGeneratedKeys="true">
+    insert into t_basic_configuration (code, Incentive_name, channel, 
+      Incentive_model, Rule_configuration_table, 
+      Start_date, Expiration_date, Day_limit, 
+      enable, state, create_Time, 
+      create_By, last_Update_Time, last_Update_By
+      )
+    values (#{code,jdbcType=VARCHAR}, #{incentiveName,jdbcType=VARCHAR}, #{channel,jdbcType=VARCHAR}, 
+      #{incentiveModel,jdbcType=VARCHAR}, #{ruleConfigurationTable,jdbcType=VARCHAR}, 
+      #{startDate,jdbcType=DATE}, #{expirationDate,jdbcType=DATE}, #{dayLimit,jdbcType=INTEGER}, 
+      #{enable,jdbcType=INTEGER}, #{state,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{createBy,jdbcType=VARCHAR}, #{lastUpdateTime,jdbcType=TIMESTAMP}, #{lastUpdateBy,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" keyColumn="ID" keyProperty="id" parameterType="com.jst.prodution.reward.serviceBean.BasicConfiguration" useGeneratedKeys="true">
+    insert into t_basic_configuration
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="code != null">
+        code,
+      </if>
+      <if test="incentiveName != null">
+        Incentive_name,
+      </if>
+      <if test="channel != null">
+        channel,
+      </if>
+      <if test="incentiveModel != null">
+        Incentive_model,
+      </if>
+      <if test="ruleConfigurationTable != null">
+        Rule_configuration_table,
+      </if>
+      <if test="startDate != null">
+        Start_date,
+      </if>
+      <if test="expirationDate != null">
+        Expiration_date,
+      </if>
+      <if test="dayLimit != null">
+        Day_limit,
+      </if>
+      <if test="enable != null">
+        enable,
+      </if>
+      <if test="state != null">
+        state,
+      </if>
+      <if test="createTime != null">
+        create_Time,
+      </if>
+      <if test="createBy != null">
+        create_By,
+      </if>
+      <if test="lastUpdateTime != null">
+        last_Update_Time,
+      </if>
+      <if test="lastUpdateBy != null">
+        last_Update_By,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="code != null">
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="incentiveName != null">
+        #{incentiveName,jdbcType=VARCHAR},
+      </if>
+      <if test="channel != null">
+        #{channel,jdbcType=VARCHAR},
+      </if>
+      <if test="incentiveModel != null">
+        #{incentiveModel,jdbcType=VARCHAR},
+      </if>
+      <if test="ruleConfigurationTable != null">
+        #{ruleConfigurationTable,jdbcType=VARCHAR},
+      </if>
+      <if test="startDate != null">
+        #{startDate,jdbcType=DATE},
+      </if>
+      <if test="expirationDate != null">
+        #{expirationDate,jdbcType=DATE},
+      </if>
+      <if test="dayLimit != null">
+        #{dayLimit,jdbcType=INTEGER},
+      </if>
+      <if test="enable != null">
+        #{enable,jdbcType=INTEGER},
+      </if>
+      <if test="state != null">
+        #{state,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createBy != null">
+        #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="lastUpdateTime != null">
+        #{lastUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastUpdateBy != null">
+        #{lastUpdateBy,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.jst.reward.bean.BasicConfigurationExample" resultType="java.lang.Long">
+    select count(*) from t_basic_configuration
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update t_basic_configuration
+    <set>
+      <if test="record.id != null">
+        ID = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.code != null">
+        code = #{record.code,jdbcType=VARCHAR},
+      </if>
+      <if test="record.incentiveName != null">
+        Incentive_name = #{record.incentiveName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.channel != null">
+        channel = #{record.channel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.incentiveModel != null">
+        Incentive_model = #{record.incentiveModel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ruleConfigurationTable != null">
+        Rule_configuration_table = #{record.ruleConfigurationTable,jdbcType=VARCHAR},
+      </if>
+      <if test="record.startDate != null">
+        Start_date = #{record.startDate,jdbcType=DATE},
+      </if>
+      <if test="record.expirationDate != null">
+        Expiration_date = #{record.expirationDate,jdbcType=DATE},
+      </if>
+      <if test="record.dayLimit != null">
+        Day_limit = #{record.dayLimit,jdbcType=INTEGER},
+      </if>
+      <if test="record.enable != null">
+        enable = #{record.enable,jdbcType=INTEGER},
+      </if>
+      <if test="record.state != null">
+        state = #{record.state,jdbcType=INTEGER},
+      </if>
+      <if test="record.createTime != null">
+        create_Time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.createBy != null">
+        create_By = #{record.createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lastUpdateTime != null">
+        last_Update_Time = #{record.lastUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.lastUpdateBy != null">
+        last_Update_By = #{record.lastUpdateBy,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update t_basic_configuration
+    set ID = #{record.id,jdbcType=VARCHAR},
+      code = #{record.code,jdbcType=VARCHAR},
+      Incentive_name = #{record.incentiveName,jdbcType=VARCHAR},
+      channel = #{record.channel,jdbcType=VARCHAR},
+      Incentive_model = #{record.incentiveModel,jdbcType=VARCHAR},
+      Rule_configuration_table = #{record.ruleConfigurationTable,jdbcType=VARCHAR},
+      Start_date = #{record.startDate,jdbcType=DATE},
+      Expiration_date = #{record.expirationDate,jdbcType=DATE},
+      Day_limit = #{record.dayLimit,jdbcType=INTEGER},
+      enable = #{record.enable,jdbcType=INTEGER},
+      state = #{record.state,jdbcType=INTEGER},
+      create_Time = #{record.createTime,jdbcType=TIMESTAMP},
+      create_By = #{record.createBy,jdbcType=VARCHAR},
+      last_Update_Time = #{record.lastUpdateTime,jdbcType=TIMESTAMP},
+      last_Update_By = #{record.lastUpdateBy,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jst.prodution.reward.serviceBean.BasicConfiguration">
+    update t_basic_configuration
+    <set>
+      <if test="code != null">
+        code = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="incentiveName != null">
+        Incentive_name = #{incentiveName,jdbcType=VARCHAR},
+      </if>
+      <if test="channel != null">
+        channel = #{channel,jdbcType=VARCHAR},
+      </if>
+      <if test="incentiveModel != null">
+        Incentive_model = #{incentiveModel,jdbcType=VARCHAR},
+      </if>
+      <if test="ruleConfigurationTable != null">
+        Rule_configuration_table = #{ruleConfigurationTable,jdbcType=VARCHAR},
+      </if>
+      <if test="startDate != null">
+        Start_date = #{startDate,jdbcType=DATE},
+      </if>
+      <if test="expirationDate != null">
+        Expiration_date = #{expirationDate,jdbcType=DATE},
+      </if>
+      <if test="dayLimit != null">
+        Day_limit = #{dayLimit,jdbcType=INTEGER},
+      </if>
+      <if test="enable != null">
+        enable = #{enable,jdbcType=INTEGER},
+      </if>
+      <if test="state != null">
+        state = #{state,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        create_Time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createBy != null">
+        create_By = #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="lastUpdateTime != null">
+        last_Update_Time = #{lastUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastUpdateBy != null">
+        last_Update_By = #{lastUpdateBy,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jst.prodution.reward.serviceBean.BasicConfiguration">
+    update t_basic_configuration
+    set code = #{code,jdbcType=VARCHAR},
+      Incentive_name = #{incentiveName,jdbcType=VARCHAR},
+      channel = #{channel,jdbcType=VARCHAR},
+      Incentive_model = #{incentiveModel,jdbcType=VARCHAR},
+      Rule_configuration_table = #{ruleConfigurationTable,jdbcType=VARCHAR},
+      Start_date = #{startDate,jdbcType=DATE},
+      Expiration_date = #{expirationDate,jdbcType=DATE},
+      Day_limit = #{dayLimit,jdbcType=INTEGER},
+      enable = #{enable,jdbcType=INTEGER},
+      state = #{state,jdbcType=INTEGER},
+      create_Time = #{createTime,jdbcType=TIMESTAMP},
+      create_By = #{createBy,jdbcType=VARCHAR},
+      last_Update_Time = #{lastUpdateTime,jdbcType=TIMESTAMP},
+      last_Update_By = #{lastUpdateBy,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  
+</mapper>
