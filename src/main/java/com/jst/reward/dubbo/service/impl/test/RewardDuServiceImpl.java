@@ -19,19 +19,27 @@ import com.jst.prodution.base.bean.BaseBean;
 import com.jst.prodution.reward.common.dto.req.RQ0001ReqDto;
 import com.jst.prodution.reward.common.dto.req.RQ0002ReqDto;
 import com.jst.prodution.reward.common.dto.req.RQ0003ReqDto;
+import com.jst.prodution.reward.common.dto.req.RQ0004ReqDto;
 import com.jst.prodution.reward.common.dto.req.RQ0005ReqDto;
 import com.jst.prodution.reward.common.dto.req.RQ0006ReqDto;
 import com.jst.prodution.reward.common.dto.req.RQ0011ReqDto;
 import com.jst.prodution.reward.common.dto.req.RQ0012ReqDto;
+import com.jst.prodution.reward.common.dto.req.RQ0013ReqDto;
 import com.jst.prodution.reward.common.dto.req.RT0001ReqDto;
+import com.jst.prodution.reward.common.dto.req.RT0002ReqDto;
+import com.jst.prodution.reward.common.dto.req.RT0003ReqDto;
 import com.jst.prodution.reward.common.dto.resp.PageResponseDTO;
 import com.jst.prodution.reward.common.dto.resp.RQ0002RespDto;
 import com.jst.prodution.reward.common.dto.resp.RQ0003RespDto;
+import com.jst.prodution.reward.common.dto.resp.RQ0004RespDto;
 import com.jst.prodution.reward.common.dto.resp.RQ0005RespDto;
 import com.jst.prodution.reward.common.dto.resp.RQ0006RespDto;
 import com.jst.prodution.reward.common.dto.resp.RQ0011RespDto;
 import com.jst.prodution.reward.common.dto.resp.RQ0012RespDto;
+import com.jst.prodution.reward.common.dto.resp.RQ0013RespDto;
 import com.jst.prodution.reward.common.dto.resp.RT0001RespDto;
+import com.jst.prodution.reward.common.dto.resp.RT0002RespDto;
+import com.jst.prodution.reward.common.dto.resp.RT0003RespDto;
 import com.jst.prodution.reward.common.enums.RespEnum;
 import com.jst.prodution.reward.common.enums.TransEnum;
 import com.jst.prodution.reward.service.RewardDuService;
@@ -468,6 +476,42 @@ public class RewardDuServiceImpl implements RewardDuService {
 			PageResponseDTO.setRespMsg(RespEnum.RESP_CODE_999999.getMsg());
 			return PageResponseDTO;
 		}
+	}
+
+
+
+
+	@Override
+	public RT0002RespDto share(RT0002ReqDto RT0002ReqDto) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+
+
+	@Override
+	public RQ0004RespDto getSigninConfigurationList(RQ0004ReqDto dto) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+
+
+	@Override
+	public RQ0013RespDto queryAccountInfo(RQ0013ReqDto dto) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+
+
+	@Override
+	public RT0003RespDto updateUserPopUp(RT0003ReqDto dto) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 

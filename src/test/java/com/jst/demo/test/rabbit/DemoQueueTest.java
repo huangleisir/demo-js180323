@@ -6,11 +6,13 @@ import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
-import com.jst.demo.rabbit.DemoQueue;
-import com.jst.demo.rabbit.PayDelay5QueueConfig;
+//import com.jst.demo.rabbit.DemoQueue;
+//import com.jst.demo.rabbit.PayDelay5QueueConfig;
 import com.jst.demo.test.AbstractTest;
-import com.taobao.stresstester.StressTestUtils;
-import com.taobao.stresstester.core.StressTask;
+//import com.taobao.stresstester.StressTestUtils;
+//import com.taobao.stresstester.core.StressTask;
+import com.jst.reward.rabbit.DemoQueue;
+import com.jst.reward.rabbit.PayDelay5QueueConfig;
 
 public class DemoQueueTest extends AbstractTest{
 
@@ -36,21 +38,21 @@ public class DemoQueueTest extends AbstractTest{
 //    StressTestUtils.testAndPrint(100, 1000000, new StressTask() {
           
           
-          StressTestUtils.testAndPrint(100, 100, new StressTask() {
-
-          public Object doTask() throws Exception {
-              
-              
-//              lstringRedisTemplate.opsForValue().set("aaa", "bbbbb");
-              
-//              System.out.println(lstringRedisTemplate.opsForValue().get("aaa"));
-              
-//              result.setData(lstringRedisTemplate.opsForValue().get("aaa"));
-              
-              
-              return null;
-          }
-      });
+//          StressTestUtils.testAndPrint(100, 100, new StressTask() {
+//
+//          public Object doTask() throws Exception {
+//              
+//              
+////              lstringRedisTemplate.opsForValue().set("aaa", "bbbbb");
+//              
+////              System.out.println(lstringRedisTemplate.opsForValue().get("aaa"));
+//              
+////              result.setData(lstringRedisTemplate.opsForValue().get("aaa"));
+//              
+//              
+//              return null;
+//          }
+//      });
       
       System.exit(0);
 

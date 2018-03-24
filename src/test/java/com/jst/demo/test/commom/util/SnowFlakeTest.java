@@ -2,8 +2,8 @@ package com.jst.demo.test.commom.util;
 
 import org.junit.Test;
 
-import com.jst.demo.rabbit.DemoQueue;
-import com.jst.demo.rabbit.PayDelay5QueueConfig;
+//import com.jst.demo.rabbit.DemoQueue;
+//import com.jst.demo.rabbit.PayDelay5QueueConfig;
 import com.jst.demo.test.AbstractTest;
 import com.jst.framework.common.util.SnowflakeUtil;
 
