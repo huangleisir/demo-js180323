@@ -26,7 +26,7 @@ public class Hao123Controller {
 		return "welcome to us , demo";
 	}*/
 	
-	
+	   
 	@RequestMapping(value = "/baidu", method = RequestMethod.GET)
 	public void baidu(HttpServletRequest req,HttpServletResponse resp){
 		logger.info("---------------~~~~~~~~~~~~baidu~~~~~"+getIpAddress(req));
